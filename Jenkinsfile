@@ -11,9 +11,10 @@
           conanClient.run(command: "remote remove conan-center")
           conanClient.run(command: "remote remove conan-transit")
           String serverName = conanClient.remote.add server: server, repo: "conan-local"
+          String serverExtName = conanClient.remote.add server: server, repo: "conan-ext-local"
           conanClient.run(command: "install --build missing", buildInfo: buildInfo)
-          String command = "upload * --all -r ${serverName} --confirm"
-//          conanClient.run(command: command, buildInfo: buildInfo)
+          String command = "upload * --all -r ${serverExtName} --confirm"
+          conanClient.run(command: command, buildInfo: buildInfo)
           server.publishBuildInfo buildInfo
 	}
 }
