@@ -5,7 +5,7 @@ conan install . --build bzip2
 //Look at SetMeUp on jfrogtraining for conan-local
 //Should I use a localhost artifactory OSS instead?
 conan remote add jfrogtraining https://jfrogtraining.jfrog.io/jfrogtraining/api/conan/conan-local --insert
-conan upload bzip2/1.0.6@lasote/stable --all
+conan upload bzip2* --all
 conan remove “*” -f
 conan install .
 cmake .
