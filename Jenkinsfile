@@ -26,11 +26,12 @@
           sh 'cmake .'
           sh 'ls'
           sh 'cmake --build .'
+          sh 'mv bin/timer bin/app-'+env.BUILD_NUMBER+'.exe'
           def uploadSpec = """{
             "files": [
               {
                 "pattern": "bin/*",
-                "target": "generic-local/conan/demo/app-"+env.BUILD_NUMBER+".exe"
+                "target": "generic-local/conan/demo/"
               }
             ]
           }"""
