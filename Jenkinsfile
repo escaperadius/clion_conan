@@ -2,7 +2,7 @@
         git url :'https://github.com/markgalpin/clion_conan.git'
         def server = Artifactory.server SERVER_ID
         def buildInfo = Artifactory.newBuildInfo()
-        buildInfo.name = "Conan-pipeline"
+//        buildInfo.name = "Conan-pipeline"
         def conanClient = Artifactory.newConanClient()
 	dir('boost_poco_md5') {
           // Add new remote repository and new user to conan configuration.
