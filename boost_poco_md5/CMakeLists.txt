@@ -1,4 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
+add_definitions (-D_GLIBCXX_USE_CXX11_ABI=0)
+add_definitions(-std=c++11)
 project(BoostPoco)
 
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
