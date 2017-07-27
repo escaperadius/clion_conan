@@ -1,9 +1,12 @@
  node {
+    stage('init') {
         git url :'https://github.com/markgalpin/clion_conan.git'
         def server = Artifactory.server SERVER_ID
         def buildInfo = Artifactory.newBuildInfo()
         buildInfo.env.collect()
         def conanClient = Artifactory.newConanClient()
+    }
+    stage ('resolve') {
 	      dir('boost_poco_md5') {
           // Add new remote repository and new user to conan configuration.
           // The server URL and the user details are taken from the server parameters.
@@ -15,8 +18,15 @@
           conanClient.run(command: "install --build missing", buildInfo: buildInfo)
           String command = "upload * --all -r ${serverExtName} --confirm"
 //          conanClient.run(command: command, buildInfo: buildInfo)
+        }
+    }
+    stage ('build') {
+        dir('boost_poco_md5') {
+          sh 'ls'
+          sh 'cmake .'
           sh 'ls'
           sh 'cmake --build .'
           server.publishBuildInfo buildInfo
-	}
+        }
+	  }
 }
