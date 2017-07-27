@@ -30,7 +30,7 @@
             "files": [
               {
                 "pattern": "bin/*",
-                "target": "generic-local/conan/demo/*-{env.BUILD_NUMBER}.exe"
+                "target": "generic-local/conan/demo/app-"+env.BUILD_NUMBER+".exe"
               }
             ]
           }"""
