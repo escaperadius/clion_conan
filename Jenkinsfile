@@ -15,6 +15,7 @@
           conanClient.run(command: "install --build missing", buildInfo: buildInfo)
           String command = "upload * --all -r ${serverExtName} --confirm"
 //          conanClient.run(command: command, buildInfo: buildInfo)
+          sh 'cmake --build .'
           server.publishBuildInfo buildInfo
 	}
 }
