@@ -33,7 +33,7 @@
             "files": [
               {
                 "pattern": "output/*",
-                "target": "generic-local/conan/demo/"
+                "target": "generic-local/conan/demo/app/"
               }
             ]
           }"""
