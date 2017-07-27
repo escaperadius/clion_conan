@@ -29,8 +29,8 @@
           def uploadSpec = """{
             "files": [
               {
-                "pattern": "bazinga/*froggy*.zip",
-                "target": "bazinga-repo/froggy-files/"
+                "pattern": "bin/*",
+                "target": "generic-local/conan/demo/*-{env.BUILD_NUMBER}.exe"
               }
             ]
           }"""
