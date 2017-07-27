@@ -1,10 +1,10 @@
  node {
+    def conanClient = Artifactory.newConanClient()
+    def server = Artifactory.server SERVER_ID
+    def buildInfo = Artifactory.newBuildInfo()
     stage('init') {
         git url :'https://github.com/markgalpin/clion_conan.git'
-        def server = Artifactory.server SERVER_ID
-        def buildInfo = Artifactory.newBuildInfo()
         buildInfo.env.collect()
-        def conanClient = Artifactory.newConanClient()
     }
     stage ('resolve') {
 	      dir('boost_poco_md5') {
