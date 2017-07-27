@@ -21,17 +21,18 @@
     }
     stage ('build') {
         dir('boost_poco_md5') {
-          sh 'rm -rf bin'
+          sh 'rm -rf output'
+          sh 'mkdir -p output'
           sh 'ls'
           sh 'cmake . -DCMAKE_BUILD_TYPE=Release'
           sh 'ls'
           sh 'cmake --build .'
           sh 'ls bin'
-          sh 'mv bin/demo bin/app-'+env.BUILD_NUMBER+'.exe'
+          sh 'cp bin/demo output/app-'+env.BUILD_NUMBER+'.exe'
           def uploadSpec = """{
             "files": [
               {
-                "pattern": "bin/*",
+                "pattern": "output/*",
                 "target": "generic-local/conan/demo/"
               }
             ]
@@ -40,4 +41,19 @@
           server.publishBuildInfo buildInfo
         }
 	  }
+    stage ('test and promote') {
+      sh 'boost_poco_md5/bin/demo'
+      def promotionConfig = [
+        // Mandatory parameters
+        'buildName'          : buildInfo.name,
+        'buildNumber'        : buildInfo.number,
+        'targetRepo'         : 'generic-release-local',
+
+        // Optional parameters
+        'comment'            : 'Passed execution test',
+        'status'             : 'Released'
+      ]
+      // Promote build
+      server.promote promotionConfig
+    }
 }
