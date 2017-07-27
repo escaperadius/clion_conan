@@ -26,6 +26,15 @@
           sh 'cmake .'
           sh 'ls'
           sh 'cmake --build .'
+          def uploadSpec = """{
+            "files": [
+              {
+                "pattern": "bazinga/*froggy*.zip",
+                "target": "bazinga-repo/froggy-files/"
+              }
+            ]
+          }"""
+          server.upload(uploadSpec, buildInfo)
           server.publishBuildInfo buildInfo
         //}
 	  }
