@@ -3,7 +3,7 @@
     def server = Artifactory.server SERVER_ID
     def buildInfo = Artifactory.newBuildInfo()
     stage('init') {
-        git url :'https://github.com/markgalpin/clion_conan.git'
+        git url :'https://github.com/'+ REPO + '/clion_conan.git'
         buildInfo.env.collect()
     }
     stage ('resolve') {
