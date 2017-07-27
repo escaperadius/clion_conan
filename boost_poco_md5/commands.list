@@ -1,4 +1,4 @@
-cmake .
+cmake . -DCMAKE_BUILD_TYPE=Release
 //look at conanfile.txt
 conan install .
 conan install . --build bzip2
@@ -8,4 +8,5 @@ conan remote add jfrogtraining https://jfrogtraining.jfrog.io/jfrogtraining/api/
 conan upload bzip2* --all
 conan remove “*” -f
 conan install .
-cmake .
+cmake . -DCMAKE_BUILD_TYPE=Release
+cmake --build .
