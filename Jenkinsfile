@@ -21,6 +21,7 @@
     }
     stage ('build') {
         dir('boost_poco_md5') {
+          sh 'rm -rf bin'
           sh 'ls'
           sh 'cmake . -DCMAKE_BUILD_TYPE=Release'
           sh 'ls'
