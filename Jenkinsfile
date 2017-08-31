@@ -56,4 +56,19 @@
       // Promote build
       server.promote promotionConfig
     }
+    stage ('distribution') {
+      def distributionConfig = [
+        // Mandatory parameters
+        'buildName'             : buildInfo.name,
+        'buildNumber'           : buildInfo.number,
+        'targetRepo'            : 'jwdemo-dist',
+
+        // Optional parameters
+        'publish'               : true, // Default: true. If true, artifacts are published when deployed to Bintray.
+        'overrideExistingFiles' : false, // Default: false. If true, Artifactory overwrites builds already existing in the target path in Bintray.
+        'async'                 : false, // Default: false. If true, the build will be distributed asynchronously. Errors and warnings may be viewed in the Artifactory log.
+        'dryRun'                : false, // Default: false. If true, distribution is only simulated. No files are actually moved.
+      ]
+      server.distribute distributionConfig
+    }
 }
