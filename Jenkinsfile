@@ -28,7 +28,7 @@
           sh 'ls'
           sh 'cmake --build .'
           sh 'ls bin'
-          sh 'cp bin/demo output/app-'+env.BUILD_NUMBER+'.exe'
+          sh 'cp bin/demo output/app-'+env.BUILD_NUMBER+'.bin'
           def uploadSpec = """{
             "files": [
               {
