@@ -1,3 +1,7 @@
+//cleanup
+conan remove "*" -f
+conan remote remove jfrogtraining
+//START
 cmake . -DCMAKE_BUILD_TYPE=Release
 //look at conanfile.txt
 conan install .
@@ -5,7 +9,7 @@ conan install . --build bzip2
 //Look at SetMeUp on jfrogtraining for conan-local
 conan remote add jfrogtraining https://jfrogtraining.jfrog.io/jfrogtraining/api/conan/conan-local --insert
 conan upload bzip2* --all
-conan remove “*” -f
+conan remove "*" -f
 conan install .
 cmake . -DCMAKE_BUILD_TYPE=Release
 cmake --build .
