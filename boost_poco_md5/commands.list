@@ -1,15 +1,16 @@
 //cleanup
 conan remove "*" -f
 conan remote remove jfrogtraining
+//setup steps:
+conan remote add conan-community https://api.bintray.com/conan/conan-community/conan
 //START
 cmake . -DCMAKE_BUILD_TYPE=Release
 //look at conanfile.txt
 conan install .
-conan install . --build bzip2
 //Look at SetMeUp on jfrogtraining for conan-local
 conan remote add jfrogtraining https://jfrogtraining.jfrog.io/jfrogtraining/api/conan/conan-local --insert
-conan upload bzip2* --all
 conan remove "*" -f
+//you may have to edit the conanfile.txt to change from boost to Boost because of an error in its recipe
 conan install .
 cmake . -DCMAKE_BUILD_TYPE=Release
 cmake --build .
