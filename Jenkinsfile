@@ -11,12 +11,13 @@
           // Add new remote repository and new user to conan configuration.
           // The server URL and the user details are taken from the server parameters.
           // The add new server returns the server unique identifier as a return value.
-          conanClient.run(command: "remote remove conan-center")
+//          conanClient.run(command: "remote remove conan-center")
           conanClient.run(command: "remote remove conan-transit")
           String serverName = conanClient.remote.add server: server, repo: "conan-local"
           String serverExtName = conanClient.remote.add server: server, repo: "conan-ext-local"
           conanClient.run(command: "install --build missing", buildInfo: buildInfo)
           String command = "upload * --all -r ${serverExtName} --confirm"
+	  conanClient.run(command) //Not included in buildInfo because its just caching.
         }
     }
     stage ('build') {
