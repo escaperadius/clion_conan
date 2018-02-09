@@ -13,6 +13,7 @@
           // The add new server returns the server unique identifier as a return value.
 //          conanClient.run(command: "remote remove conan-center")
           conanClient.run(command: "remote remove conan-transit")
+	  conanClient.run(command: "remote list")
           String serverName = conanClient.remote.add server: server, repo: "conan-local"
           String serverExtName = conanClient.remote.add server: server, repo: "conan-ext-local"
           conanClient.run(command: "install --build missing", buildInfo: buildInfo)
