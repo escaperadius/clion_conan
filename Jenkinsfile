@@ -18,7 +18,7 @@
           String serverExtName = conanClient.remote.add server: server, repo: "conan-ext-local"
 //	  conanClient.run(command:"install .", buildInfo:buildInfo)
 	  conanClient.run(command: "install . --build missing", buildInfo: buildInfo)
-	  conanClient.run(command: "upload * --all -r ${serverExtName} --confirm") //Not included in buildInfo because its just caching.
+	  conanClient.run(command: "upload * --all -r conan-ext-local --confirm") //Not included in buildInfo because its just caching.
         }
     }
     stage ('build') {
