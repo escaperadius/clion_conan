@@ -16,6 +16,7 @@
 	  conanClient.run(command: "remote list")
           String serverName = conanClient.remote.add server: server, repo: "conan-local"
           String serverExtName = conanClient.remote.add server: server, repo: "conan-ext-local"
+	  conanClient.run(command: "remote list")
 //	  conanClient.run(command:"install .", buildInfo:buildInfo)
 	  conanClient.run(command: "install . --build missing", buildInfo: buildInfo)
 	  conanClient.run(command: "upload * --all -r conan-ext-local --confirm") //Not included in buildInfo because its just caching.
