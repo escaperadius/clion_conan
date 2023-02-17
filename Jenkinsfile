@@ -1,9 +1,9 @@
  node {
     def conanClient = Artifactory.newConanClient()
-    def server = Artifactory.server SERVER_ID
+    def server = Artifactory.server 'jfrog-cli'
     def buildInfo = Artifactory.newBuildInfo()
     stage('init') {
-        git url :'https://github.com/'+ REPO + '/clion_conan.git'
+        git url :'https://github.com/escaperadius/clion_conan.git'
         buildInfo.env.collect()
     }
     stage ('resolve') {
